@@ -15,14 +15,17 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name:" />
+            android:text="Name:"
+            android:textStyle="bold"
+            android:textColor="#AABB22" />
 
         <EditText
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10" >
+            android:ems="10"
+            android:textColor="#AABB44" >
 
             <requestFocus />
         </EditText>
@@ -40,14 +43,17 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Address:" />
+            android:text="Address:"
+            android:textStyle="bold"
+            android:textColor="#AABB22" />
 
         <EditText
             android:id="@+id/addr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10" />
+            android:ems="10"
+             android:textColor="#AABB44" />
     </LinearLayout>
 
     <Button
