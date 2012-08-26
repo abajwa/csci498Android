@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 public class LunchListActivity extends Activity {
@@ -18,6 +19,12 @@ public class LunchListActivity extends Activity {
         Button save = (Button)findViewById(R.id.save);
         
         save.setOnClickListener(onSave);
+        
+        // extra credit - adding radio buttons with java
+        RadioGroup rgroup = (RadioGroup)findViewById(R.id.types);
+        RadioButton extraButton = new RadioButton(this);
+        extraButton.setText("Other");
+        rgroup.addView(extraButton);
     }
 
     private View.OnClickListener onSave = new View.OnClickListener() {
