@@ -5,13 +5,17 @@ import java.util.List;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class LunchListActivity extends Activity {
 	List<Restaurant> model = new ArrayList<Restaurant>();
@@ -34,8 +38,7 @@ public class LunchListActivity extends Activity {
         adapter = new RestaurantAdapter();
         list.setAdapter(adapter);
         
-        addresses = new String[] {
-                "Belgium", "France", "Italy", "Germany", "Spain" };
+        addresses = new String[] {};
         autoAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, addresses);
         
@@ -78,6 +81,35 @@ public class LunchListActivity extends Activity {
 			super(LunchListActivity.this,
 					android.R.layout.simple_list_item_1,
 					model);
+		}
+		
+		public View getView(int position, View convertView, ViewGroup parent) {
+			View row = convertView;
+			
+			if (row == null) {
+				LayoutInflater inflater = getLayoutInflater();
+				
+				row = inflater.inflate(R.layout.row, null);
+			}
+			
+			Restaurant r = model.get(position);
+			
+			((TextView)row.findViewById(R.id.title)).setText(r.getName());
+			((TextView)row.findViewById(R.id.address)).setText(r.getAddress());
+			
+			ImageView icon = (ImageView)row.findViewById(R.id.icon);
+			
+			if (r.getType().equals("sit_down")) {
+				icon.setImageResource(R.drawable.ball_red);
+			}
+			else if (r.getType().equals("take_out")) {
+				icon.setImageResource(R.drawable.ball_yellow);
+			}
+			else {
+				icon.setImageResource(R.drawable.ball_green);
+			}
+			
+			return(row);
 		}
 	}
 }
