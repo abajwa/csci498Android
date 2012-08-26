@@ -87,11 +87,24 @@ public class LunchListActivity extends Activity {
 		public View getView(int position, View convertView, ViewGroup parent) {
 			View row = convertView;
 			RestaurantHolder holder = null;
-			
+			int type = getItemViewType(position);
+
+			// uses three different row types depending on type of restaurant
 			if (row == null) {
 				LayoutInflater inflater = getLayoutInflater();
 				
-				row = inflater.inflate(R.layout.row, parent, false);
+				switch (type) {
+					case 1:
+						row = inflater.inflate(R.layout.sitdownrow, parent, false);
+						break;
+					case 2:
+						row = inflater.inflate(R.layout.takeoutrow, parent, false);
+						break;
+					case 3:
+						row = inflater.inflate(R.layout.deliveryrow, parent, false);
+						break;
+				}
+				
 				holder = new RestaurantHolder(row);
 				row.setTag(holder);
 			}
@@ -103,6 +116,24 @@ public class LunchListActivity extends Activity {
 			
 			return(row);
 		}
+		
+		@Override
+        public int getItemViewType(int position) {
+            Restaurant r = model.get(position);
+            
+            if (r.getType().equals("sit_down"))
+				return 1;
+			else if (r.getType().equals("take_out"))
+				return 2;
+			else
+				return 3;
+        }
+ 
+        @Override
+        public int getViewTypeCount() {
+            return 3;
+        }
+
 	}
 	
 	static class RestaurantHolder {
