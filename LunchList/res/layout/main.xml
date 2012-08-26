@@ -1,67 +1,20 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true" >
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Name:"
-            android:textStyle="bold"
-            android:textColor="#AABB22" />
-
-        <EditText
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:textColor="#AABB44" >
-
-            <requestFocus />
-        </EditText>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/linearLayout1" >
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Address:"
-            android:textStyle="bold"
-            android:textColor="#AABB22" />
-
-        <EditText
-            android:id="@+id/addr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-             android:textColor="#AABB44" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/save"
+    android:layout_height="match_parent"
+    android:stretchColumns="1"
+    >
+    <TableRow>
+        <TextView android:text="Name:" />
+        <EditText android:id="@+id/name" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="Address:" />
+        <EditText android:id="@+id/addr" />
+    </TableRow>
+    <Button android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/linearLayout2"
-        android:text="Save" />
-
-</RelativeLayout>
+        android:text="Save"
+        />
+</TableLayout>
