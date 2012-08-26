@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 
 public class LunchListActivity extends Activity {
 	List<Restaurant> model = new ArrayList<Restaurant>();
@@ -25,7 +26,7 @@ public class LunchListActivity extends Activity {
         
         save.setOnClickListener(onSave);
         
-        ListView list = (ListView)findViewById(R.id.restaurants);
+        Spinner list = (Spinner)findViewById(R.id.restaurants);
         
         adapter = new ArrayAdapter<Restaurant> (this,
         		android.R.layout.simple_list_item_1,
