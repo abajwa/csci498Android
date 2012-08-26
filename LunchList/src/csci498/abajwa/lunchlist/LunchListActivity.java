@@ -6,13 +6,15 @@ import java.util.List;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
+import android.widget.ListView;
 import android.widget.RadioGroup;
 
 public class LunchListActivity extends Activity {
 	List<Restaurant> model = new ArrayList<Restaurant>();
+	ArrayAdapter<Restaurant> adapter = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -23,11 +25,12 @@ public class LunchListActivity extends Activity {
         
         save.setOnClickListener(onSave);
         
-        // extra credit - adding radio buttons with java
-        RadioGroup rgroup = (RadioGroup)findViewById(R.id.types);
-        RadioButton extraButton = new RadioButton(this);
-        extraButton.setText("Other");
-        rgroup.addView(extraButton);
+        ListView list = (ListView)findViewById(R.id.restaurants);
+        
+        adapter = new ArrayAdapter<Restaurant> (this,
+        		android.R.layout.simple_list_item_1,
+        		model);
+        list.setAdapter(adapter);
     }
 
     private View.OnClickListener onSave = new View.OnClickListener() {
@@ -54,6 +57,7 @@ public class LunchListActivity extends Activity {
 					r.setType("delivery");
 					break;
 			}
+			adapter.add(r);
 		}
 	};
 }
