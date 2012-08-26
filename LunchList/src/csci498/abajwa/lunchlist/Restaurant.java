@@ -1,6 +1,6 @@
 package csci498.abajwa.lunchlist;
 
-public class Restauant {
+public class Restaurant {
 	private String name="";
 	private String address="";
 	
