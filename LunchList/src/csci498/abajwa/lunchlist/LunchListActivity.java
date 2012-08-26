@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -121,12 +122,18 @@ public class LunchListActivity extends Activity {
 			
 			if (r.getType().equals("sit_down")) {
 				icon.setImageResource(R.drawable.ball_red);
+				name.setTextColor(Color.RED);
+				address.setTextColor(Color.RED);
 			}
 			else if (r.getType().equals("take_out")) {
 				icon.setImageResource(R.drawable.ball_yellow);
+				name.setTextColor(Color.YELLOW);
+				address.setTextColor(Color.YELLOW);
 			}
 			else {
 				icon.setImageResource(R.drawable.ball_green);
+				name.setTextColor(Color.GREEN);
+				address.setTextColor(Color.GREEN);
 			}
 		}
 	}
