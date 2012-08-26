@@ -7,15 +7,18 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 public class LunchListActivity extends Activity {
 	List<Restaurant> model = new ArrayList<Restaurant>();
 	ArrayAdapter<Restaurant> adapter = null;
+	AutoCompleteTextView address;
+	ArrayAdapter<String> autoAdapter = null;
+	private String[] addresses; 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,15 @@ public class LunchListActivity extends Activity {
         		android.R.layout.simple_list_item_1,
         		model);
         list.setAdapter(adapter);
+        
+        addresses = new String[] {
+                "Belgium", "France", "Italy", "Germany", "Spain" };
+        autoAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, addresses);
+        
+        address = (AutoCompleteTextView)
+                findViewById(R.id.addr);
+        address.setAdapter(autoAdapter);
     }
 
     private View.OnClickListener onSave = new View.OnClickListener() {
@@ -59,6 +71,7 @@ public class LunchListActivity extends Activity {
 					break;
 			}
 			adapter.add(r);
+			autoAdapter.add(address.getText().toString());
 		}
 	};
 }
