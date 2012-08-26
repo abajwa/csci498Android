@@ -25,6 +25,34 @@ public class LunchListActivity extends Activity {
         RadioButton extraButton = new RadioButton(this);
         extraButton.setText("Other");
         rgroup.addView(extraButton);
+        
+        RadioButton extraButton2 = new RadioButton(this);
+        extraButton2.setText("extra 1");
+        rgroup.addView(extraButton2);
+        
+        RadioButton extraButton3 = new RadioButton(this);
+        extraButton3.setText("extra 2");
+        rgroup.addView(extraButton3);
+        
+        RadioButton extraButton4 = new RadioButton(this);
+        extraButton4.setText("extra 3");
+        rgroup.addView(extraButton4);
+        
+        RadioButton extraButton5 = new RadioButton(this);
+        extraButton5.setText("extra 4");
+        rgroup.addView(extraButton5);
+        
+        RadioButton extraButton6 = new RadioButton(this);
+        extraButton6.setText("extra 5");
+        rgroup.addView(extraButton6);
+        
+        RadioButton extraButton7 = new RadioButton(this);
+        extraButton7.setText("extra 6");
+        rgroup.addView(extraButton7);
+        
+        RadioButton extraButton8 = new RadioButton(this);
+        extraButton8.setText("extra 7");
+        rgroup.addView(extraButton8);
     }
 
     private View.OnClickListener onSave = new View.OnClickListener() {
