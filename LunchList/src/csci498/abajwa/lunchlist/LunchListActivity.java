@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.AdapterView;
 
 public class LunchListActivity extends TabActivity {
 	List<Restaurant> model = new ArrayList<Restaurant>();
@@ -47,6 +48,8 @@ public class LunchListActivity extends TabActivity {
 	    
 	    getTabHost().setCurrentTab(0);
 	    
+	    list.setOnItemClickListener(onListClick);
+	    
 	}
 
 	private View.OnClickListener onSave = new View.OnClickListener() {
@@ -78,6 +81,15 @@ public class LunchListActivity extends TabActivity {
 		}
 	};
 
+	private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener() {
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+				long arg3) {
+			// TODO Auto-generated method stub
+			
+		}
+	};
+	
 	class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 		RestaurantAdapter() {
 			super(LunchListActivity.this, R.layout.row, model);
