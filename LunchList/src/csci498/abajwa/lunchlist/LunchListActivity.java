@@ -2,7 +2,6 @@ package csci498.abajwa.lunchlist;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.graphics.Color;
@@ -72,6 +71,7 @@ public class LunchListActivity extends Activity {
 					r.setType("delivery");
 					break;
 			}
+			
 			adapter.add(r);
 			autoAdapter.add(address.getText().toString());
 		}
@@ -133,7 +133,6 @@ public class LunchListActivity extends Activity {
         public int getViewTypeCount() {
             return 3;
         }
-
 	}
 	
 	static class RestaurantHolder {
