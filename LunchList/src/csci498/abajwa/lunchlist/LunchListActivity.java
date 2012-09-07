@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -16,7 +17,6 @@ import android.widget.RadioGroup;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.AdapterView;
-import java.util.Calendar;
 
 public class LunchListActivity extends TabActivity {
 	List<Restaurant> model = new ArrayList<Restaurant>();
@@ -25,6 +25,7 @@ public class LunchListActivity extends TabActivity {
 	EditText name = null;
 	EditText address = null;
 	RadioGroup types = null;
+	DatePicker picker = null;
 	
 
 	@Override
@@ -48,6 +49,8 @@ public class LunchListActivity extends TabActivity {
 		setUpTabHost();
 	    
 	    list.setOnItemClickListener(onListClick);
+	    
+	    picker = (DatePicker)findViewById(R.id.datePicker);
 	}
 	
 	private void setUpTabHost() {
