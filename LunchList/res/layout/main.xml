@@ -57,16 +57,9 @@
         </TableRow>
         
         <TableRow>
-            <TextView android:id="@+id/dateDisplay"
-            	android:layout_width="wrap_content"
-           		android:layout_height="wrap_content"
-            	android:paddingLeft="4dip" />
-       
-            <Button android:id="@+id/pickDate"
-                android:layout_width="wrap_content"
-            	android:layout_height="wrap_content"
-            	android:paddingLeft="4dip"
-            	android:text="Change Date"/>
+            <DatePicker android:id="@+id/datePicker"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
         </TableRow>
         
         <Button android:id="@+id/save"

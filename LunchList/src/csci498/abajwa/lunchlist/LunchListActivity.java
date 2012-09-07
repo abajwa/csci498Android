@@ -17,8 +17,6 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.AdapterView;
 import java.util.Calendar;
-import android.app.DatePickerDialog;
-import android.widget.DatePicker;
 
 public class LunchListActivity extends TabActivity {
 	List<Restaurant> model = new ArrayList<Restaurant>();
@@ -27,11 +25,6 @@ public class LunchListActivity extends TabActivity {
 	EditText name = null;
 	EditText address = null;
 	RadioGroup types = null;
-	TextView date = null;
-	private int mYear;
-    private int mMonth;
-    private int mDay;
-    static final int DATE_DIALOG_ID = 1;
 	
 
 	@Override
@@ -42,7 +35,6 @@ public class LunchListActivity extends TabActivity {
 		name = (EditText)findViewById(R.id.name);
 		address = (EditText)findViewById(R.id.addr);
 		types = (RadioGroup)findViewById(R.id.types);
-		date = (TextView)findViewById(R.id.dateDisplay);
 
 		Button save = (Button)findViewById(R.id.save);
 
@@ -56,7 +48,6 @@ public class LunchListActivity extends TabActivity {
 		setUpTabHost();
 	    
 	    list.setOnItemClickListener(onListClick);
-	    
 	}
 	
 	private void setUpTabHost() {
