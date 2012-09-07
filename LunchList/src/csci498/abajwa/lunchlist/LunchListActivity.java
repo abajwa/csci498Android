@@ -106,6 +106,7 @@ public class LunchListActivity extends TabActivity {
 			
 			name.setText(r.getName());
 			address.setText(r.getAddress());
+			picker.updateDate(r.getYear(), r.getMonth(), r.getDay());
 			
 			if (r.getType().equals("sit_down")) {
 				types.check(R.id.sit_down);
