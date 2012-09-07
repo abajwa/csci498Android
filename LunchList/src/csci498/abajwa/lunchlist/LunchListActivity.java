@@ -152,17 +152,20 @@ public class LunchListActivity extends TabActivity {
 	static class RestaurantHolder {
 		private TextView name = null;
 		private TextView address = null;
+		private TextView date = null;
 		private ImageView icon = null;
 
 		RestaurantHolder(View row) {
 			name = (TextView)row.findViewById(R.id.title);
 			address = (TextView)row.findViewById(R.id.address);
+			date = (TextView)row.findViewById(R.id.date);
 			icon = (ImageView)row.findViewById(R.id.icon);
 		}
 
 		void populateFrom(Restaurant r) {
 			name.setText(r.getName());
 			address.setText(r.getAddress());
+			date.setText((r.getMonth() + 1) + "/" + r.getDay() + "/" + r.getYear());
 
 			if (r.getType().equals("sit_down")) {
 				icon.setImageResource(R.drawable.ball_red);
