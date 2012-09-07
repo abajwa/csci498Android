@@ -18,6 +18,7 @@ import android.widget.RadioGroup;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.AdapterView;
+import android.widget.ViewFlipper;
 
 public class LunchListActivity extends Activity {
 	List<Restaurant> model = new ArrayList<Restaurant>();
@@ -27,6 +28,8 @@ public class LunchListActivity extends Activity {
 	EditText address = null;
 	RadioGroup types = null;
 	DatePicker picker = null;
+	ViewFlipper flipper = null;
+	Button flip = null;
 	
 
 	@Override
@@ -47,29 +50,26 @@ public class LunchListActivity extends Activity {
 		adapter = new RestaurantAdapter();
 		list.setAdapter(adapter);
 		
-		//setUpTabHost();
 	    
 	    list.setOnItemClickListener(onListClick);
 	    
 	    picker = (DatePicker)findViewById(R.id.datePicker);
+	    
+	    flipper = (ViewFlipper)findViewById(R.id.flipper);
+	    flip = (Button)findViewById(R.id.flipButton);
+	    
+	    flip.setOnClickListener(onFlip);
 	}
-	/*
-	private void setUpTabHost() {
+	
+	private View.OnClickListener onFlip = new View.OnClickListener() {
 		
-		TabHost.TabSpec spec = getTabHost().newTabSpec("tag1");
-	    
-	    spec.setContent(R.id.restaurants);
-	    spec.setIndicator("List", getResources().getDrawable(R.drawable.list));
-	    getTabHost().addTab(spec);
-	    
-	    spec=getTabHost().newTabSpec("tag2");
-	    spec.setContent(R.id.details);
-	    spec.setIndicator("Details", getResources().getDrawable(R.drawable.restaurant));
-	    getTabHost().addTab(spec);
-	    
-	    getTabHost().setCurrentTab(0);
-	}
-*/
+		@Override
+		public void onClick(View v) {
+			flipper.showNext();
+			
+		}
+	};
+
 	private View.OnClickListener onSave = new View.OnClickListener() {
 
 		@Override
@@ -118,8 +118,6 @@ public class LunchListActivity extends Activity {
 			else {
 				types.check(R.id.delivery);
 			}
-			
-			//getTabHost().setCurrentTab(1);
 		}
 	};
 	
