@@ -79,6 +79,7 @@ public class LunchListActivity extends TabActivity {
 
 			r.setName(name.getText().toString());
 			r.setAddress(address.getText().toString());
+			r.setDate(picker.getMonth(), picker.getDayOfMonth(), picker.getYear());
 
 			RadioGroup types = (RadioGroup)findViewById(R.id.types);
 
