@@ -3,6 +3,7 @@ package csci498.abajwa.lunchlist;
 import java.util.ArrayList;
 import java.util.List;
 import android.os.Bundle;
+import android.app.Activity;
 import android.app.TabActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,7 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.AdapterView;
 
-public class LunchListActivity extends TabActivity {
+public class LunchListActivity extends Activity {
 	List<Restaurant> model = new ArrayList<Restaurant>();
 	RestaurantAdapter adapter = null; 
 	
@@ -46,13 +47,13 @@ public class LunchListActivity extends TabActivity {
 		adapter = new RestaurantAdapter();
 		list.setAdapter(adapter);
 		
-		setUpTabHost();
+		//setUpTabHost();
 	    
 	    list.setOnItemClickListener(onListClick);
 	    
 	    picker = (DatePicker)findViewById(R.id.datePicker);
 	}
-	
+	/*
 	private void setUpTabHost() {
 		
 		TabHost.TabSpec spec = getTabHost().newTabSpec("tag1");
@@ -68,7 +69,7 @@ public class LunchListActivity extends TabActivity {
 	    
 	    getTabHost().setCurrentTab(0);
 	}
-
+*/
 	private View.OnClickListener onSave = new View.OnClickListener() {
 
 		@Override
@@ -118,7 +119,7 @@ public class LunchListActivity extends TabActivity {
 				types.check(R.id.delivery);
 			}
 			
-			getTabHost().setCurrentTab(1);
+			//getTabHost().setCurrentTab(1);
 		}
 	};
 	
