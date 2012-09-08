@@ -97,6 +97,18 @@ public class LunchListActivity extends TabActivity {
 			
 			return(true);
 		}
+		if (item.getItemId() == R.id.screenSwitch) {
+			if (getTabHost().getCurrentTab() == 0) {
+				getTabHost().setCurrentTab(1);
+				item.setTitle("List");
+				item.setIcon(R.drawable.list);
+			}
+			else { 
+				getTabHost().setCurrentTab(0);
+				item.setTitle("Detail");
+				item.setIcon(R.drawable.restaurant);
+			}
+		}
 		
 		return(super.onOptionsItemSelected(item));
 	}
