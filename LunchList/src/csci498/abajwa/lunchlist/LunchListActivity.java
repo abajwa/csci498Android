@@ -3,6 +3,7 @@ package csci498.abajwa.lunchlist;
 import java.util.ArrayList;
 import java.util.List;
 import android.os.Bundle;
+import android.app.AlertDialog;
 import android.app.TabActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -83,7 +84,16 @@ public class LunchListActivity extends TabActivity {
 				message = current.getNotes();
 			}
 			
-			Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+			AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+			
+			alertBuilder.setTitle("Note");
+			
+			alertBuilder.setMessage(message)
+						.setCancelable(false)
+						.setPositiveButton("OK", null);
+			AlertDialog alert = alertBuilder.create();
+			
+			alert.show();
 			
 			return(true);
 		}
