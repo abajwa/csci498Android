@@ -5,6 +5,8 @@ import java.util.List;
 import android.os.Bundle;
 import android.app.TabActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -58,6 +60,13 @@ public class LunchListActivity extends TabActivity {
 	    
 	    list.setOnItemClickListener(onListClick);
 	    
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		new MenuInflater(this).inflate(R.menu.option, menu);
+		
+		return(super.onCreateOptionsMenu(menu));
 	}
 
 	private View.OnClickListener onSave = new View.OnClickListener() {
