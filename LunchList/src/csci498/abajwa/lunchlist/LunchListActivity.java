@@ -3,6 +3,7 @@ package csci498.abajwa.lunchlist;
 import java.util.ArrayList;
 import java.util.List;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.app.TabActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -10,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,10 +32,12 @@ public class LunchListActivity extends TabActivity {
 	EditText notes = null;
 	RadioGroup types = null;
 	Restaurant current = null;
+	int progress;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_PROGRESS);
 		setContentView(R.layout.main);
 		
 		name = (EditText)findViewById(R.id.name);
@@ -67,6 +71,19 @@ public class LunchListActivity extends TabActivity {
 	    
 	}
 	
+	private Runnable longTask = new Runnable() {
+		public void run() {
+			for (int i = 0; i < 20; i++) {
+				doSomeLongWork(500);
+			}
+		}
+	};
+	
+	private void doSomeLongWork(final int incr) {
+		SystemClock.sleep(250);
+	}
+	
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		new MenuInflater(this).inflate(R.menu.option, menu);
@@ -86,6 +103,9 @@ public class LunchListActivity extends TabActivity {
 			Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 			
 			return(true);
+		}
+		else if (item.getItemId() == R.id.run) {
+			new Thread(longTask).start();
 		}
 		
 		return(super.onOptionsItemSelected(item));
