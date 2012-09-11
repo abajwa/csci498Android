@@ -80,6 +80,8 @@ public class LunchListActivity extends TabActivity {
 			runOnUiThread(new Runnable() {
 				public void run() {
 					setProgressBarVisibility(false);
+					String message = "Long Task Finished";
+					Toast.makeText(LunchListActivity.this, message, Toast.LENGTH_LONG).show();
 				}
 			});
 		}
