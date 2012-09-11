@@ -66,6 +66,21 @@ public class LunchListActivity extends TabActivity {
 	    
 	    list.setOnItemClickListener(onListClick);
 	    
+	    testExceptionDialogClass();
+	}
+	
+	public void testExceptionDialogClass() {
+		
+		try {
+			int error = 2/0;
+		}
+		catch(ArithmeticException e) {
+			
+			ErrorDialog errorAlert = new ErrorDialog(this);
+			errorAlert.setMessageForException(e);
+			
+			errorAlert.show();
+		}
 	}
 	
 	@Override
