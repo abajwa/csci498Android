@@ -74,23 +74,27 @@ public class LunchListActivity extends TabActivity {
 	    list.setOnItemClickListener(onListClick);
 	    
 	    handler = new Handler();
+	    
+	    
+	    Runnable longTask = new Runnable() {
+			public void run() {
+				for (int i = 0; i < 20; i++) {
+					doSomeLongWork(500);
+				}
+				
+				handler.post(new Runnable()  {
+					public void run() {
+					setProgressBarVisibility(false);
+					String message = "Long Task Finished";
+					Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();;
+					}
+				});
+			}
+		};
+	    
 	}
 	
-	private Runnable longTask = new Runnable() {
-		public void run() {
-			for (int i = 0; i < 20; i++) {
-				doSomeLongWork(500);
-			}
-			
-			handler.post(new Runnable()  {
-				public void run() {
-				setProgressBarVisibility(false);
-				String message = "Long Task Finished";
-				Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();;
-				}
-			});
-		}
-	};
+	
 	
 	private void doSomeLongWork(final int incr) {
 		handler.post(new Runnable()  {
@@ -122,11 +126,6 @@ public class LunchListActivity extends TabActivity {
 			Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 			
 			return(true);
-		}
-		else if (item.getItemId() == R.id.run) {
-			setProgressBarVisibility(true);
-			progress = 0;
-			new Thread(longTask).start();
 		}
 		
 		return(super.onOptionsItemSelected(item));
