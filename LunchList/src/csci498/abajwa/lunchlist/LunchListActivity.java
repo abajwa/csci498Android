@@ -2,6 +2,9 @@ package csci498.abajwa.lunchlist;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -37,7 +40,9 @@ public class LunchListActivity extends TabActivity {
 	int progress;
 	
 	Handler handler;
-
+	LinkedBlockingQueue<Runnable> linkedQueue = new LinkedBlockingQueue<Runnable>();
+	ThreadPoolExecutor threads;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -79,7 +84,7 @@ public class LunchListActivity extends TabActivity {
 	    Runnable longTask = new Runnable() {
 			public void run() {
 				for (int i = 0; i < 20; i++) {
-					doSomeLongWork(500);
+					fakeJob(500);
 				}
 				
 				handler.post(new Runnable()  {
@@ -95,8 +100,11 @@ public class LunchListActivity extends TabActivity {
 	}
 	
 	
+	private void killJob() {
+		threads.shutdown();
+	}
 	
-	private void doSomeLongWork(final int incr) {
+	private void fakeJob(final int incr) {
 		handler.post(new Runnable()  {
 			public void run() {
 				progress += incr;
