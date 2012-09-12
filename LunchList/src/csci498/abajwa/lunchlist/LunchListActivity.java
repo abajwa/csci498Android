@@ -3,6 +3,8 @@ package csci498.abajwa.lunchlist;
 import java.util.ArrayList;
 import java.util.List;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.SystemClock;
 import android.app.TabActivity;
 import android.view.LayoutInflater;
@@ -76,14 +78,15 @@ public class LunchListActivity extends TabActivity {
 			for (int i = 0; i < 20; i++) {
 				doSomeLongWork(500);
 			}
-		
-			runOnUiThread(new Runnable() {
-				public void run() {
-					setProgressBarVisibility(false);
-					String message = "Long Task Finished";
-					Toast.makeText(LunchListActivity.this, message, Toast.LENGTH_LONG).show();
-				}
-			});
+			handler.sendEmptyMessage(0);
+		}
+	};
+	
+	private final Handler handler = new Handler() {
+		public void handleMessage(Message msg) {
+			setProgressBarVisibility(false);
+			String message = "Long Task Finished";
+			Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
 		}
 	};
 	
