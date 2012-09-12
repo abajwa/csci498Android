@@ -35,6 +35,8 @@ public class LunchListActivity extends TabActivity {
 	RadioGroup types = null;
 	Restaurant current = null;
 	int progress;
+	
+	Handler handler;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,7 @@ public class LunchListActivity extends TabActivity {
 	    
 	    list.setOnItemClickListener(onListClick);
 	    
+	    handler = new Handler();
 	}
 	
 	private Runnable longTask = new Runnable() {
@@ -78,20 +81,19 @@ public class LunchListActivity extends TabActivity {
 			for (int i = 0; i < 20; i++) {
 				doSomeLongWork(500);
 			}
-			handler.sendEmptyMessage(0);
-		}
-	};
-	
-	private final Handler handler = new Handler() {
-		public void handleMessage(Message msg) {
-			setProgressBarVisibility(false);
-			String message = "Long Task Finished";
-			Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+			
+			handler.post(new Runnable()  {
+				public void run() {
+				setProgressBarVisibility(false);
+				String message = "Long Task Finished";
+				Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();;
+				}
+			});
 		}
 	};
 	
 	private void doSomeLongWork(final int incr) {
-		runOnUiThread(new Runnable()  {
+		handler.post(new Runnable()  {
 			public void run() {
 				progress += incr;
 				setProgress(progress);
