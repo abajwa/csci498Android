@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -79,6 +80,7 @@ public class LunchListActivity extends TabActivity {
 	    list.setOnItemClickListener(onListClick);
 	    
 	    handler = new Handler();
+		threads = new ThreadPoolExecutor(1, Integer.MAX_VALUE, 30, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
 	    
 	    
 	    Runnable longTask = new Runnable() {
@@ -94,8 +96,11 @@ public class LunchListActivity extends TabActivity {
 					Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();;
 					}
 				});
+				killJob();
 			}
 		};
+		linkedQueue.add(longTask);
+		threads.execute(longTask);
 	    
 	}
 	
