@@ -83,18 +83,38 @@ public class LunchListActivity extends TabActivity {
 				doSomeLongWork(500);
 			}
 		
-			runOnUiThread(new Runnable() {
-				public void run() {
-					setProgressBarVisibility(false);
-				}
-			});
+			if (isActive.get()) {
+				runOnUiThread(new Runnable() {
+					public void run() {
+						setProgressBarVisibility(false);
+						progress = 0;
+					}
+				});
+			}
 		}
 	};
 	
+	private void startWork() {
+		setProgressBarVisibility(true);
+		new Thread(longTask).start();
+	}
+	
+	@Override
 	public void onPause() {
 		super.onPause();
 		
 		isActive.set(false);
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		
+		isActive.set(true);
+		
+		if (progress > 0) {
+			startWork();
+		}
 	}
 	
 	private void doSomeLongWork(final int incr) {
@@ -129,9 +149,8 @@ public class LunchListActivity extends TabActivity {
 			return(true);
 		}
 		else if (item.getItemId() == R.id.run) {
-			setProgressBarVisibility(true);
-			progress = 0;
-			new Thread(longTask).start();
+			startWork();
+			return (true);
 		}
 		
 		return(super.onOptionsItemSelected(item));
