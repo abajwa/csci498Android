@@ -111,15 +111,15 @@ public class LunchListActivity extends TabActivity {
 	}
 	
 	@Override
-	public void onPause() {
-		super.onPause();
+	public void onStop() {
+		super.onStop();
 		
 		isActive.set(false);
 	}
 	
 	@Override
-	public void onResume() {
-		super.onResume();
+	public void onStart() {
+		super.onStart();
 		
 		isActive.set(true);
 		
