@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.app.TabActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -75,6 +76,16 @@ public class LunchListActivity extends TabActivity {
 	    
 	    isActive = new AtomicBoolean(true);
 	    
+	    if (savedInstanceState != null && savedInstanceState.getInt("progress") > 0) {
+	    	Log.d("WORKKK", "prg amount " + progress);
+	    	startWork();
+	    }
+	}
+	
+	@Override 
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putInt("progress", progress);
 	}
 	
 	private Runnable longTask = new Runnable() {
