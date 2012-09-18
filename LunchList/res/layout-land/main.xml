@@ -34,7 +34,7 @@
                     
                     <TableRow>
                         <TextView
-                            android:text="Name:"
+                            android:text="@string/name_label"
                             android:paddingRight="2dip" />
                         
                         <EditText
@@ -42,7 +42,7 @@
                             android:maxWidth="140sp" />
                         
                         <TextView
-                            android:text="Address:"
+                            android:text="@string/addr_label"
                             android:paddingRight="2dip"
                             android:paddingLeft="2dip" />
                         
@@ -53,23 +53,23 @@
                     </TableRow>
                     
                     <TableRow>
-                        <TextView android:text="Type:" />
+                        <TextView android:text="@string/type_label" />
                         
                         <RadioGroup android:id="@+id/types">
                             <RadioButton android:id="@+id/take_out"
-                                android:text="Take-Out"
+                                android:text="@string/take_out"
                                 android:checked="true" />
                             
                             <RadioButton android:id="@+id/sit_down"
-                                android:text="Sit-Down" />
+                                android:text="@string/sit_down" />
                             
                             <RadioButton android:id="@+id/delivery"
-                                android:text="Delivery" />
+                                android:text="@string/delivery" />
                             
                         </RadioGroup>
                         
                         <TextView
-                            android:text="Notes:"
+                            android:text="@string/notes_label"
                             android:paddingLeft="2dip" />
                         
                         <LinearLayout
@@ -89,7 +89,7 @@
                             <Button android:id="@+id/save"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Save" />
+                                android:text="@string/save" />
                             
                         </LinearLayout>
                     </TableRow>
