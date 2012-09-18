@@ -18,7 +18,6 @@ public class RestaurantHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL("CREATE TABLE restaurants (_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT," +
 				" address TEXT, type TEXT, notes TEXT);");
-		
 	}
 	
 	@Override

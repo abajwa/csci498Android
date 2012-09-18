@@ -7,6 +7,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.app.TabActivity;
+import android.content.Context;
+import android.database.Cursor;
+import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,7 +29,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 public class LunchListActivity extends TabActivity {
-	List<Restaurant> model = new ArrayList<Restaurant>();
+	Cursor model = null;
 	RestaurantAdapter adapter = null; 
 	
 	EditText name = null;
@@ -54,7 +57,9 @@ public class LunchListActivity extends TabActivity {
 
 		ListView list = (ListView)findViewById(R.id.restaurants);
 
-		adapter = new RestaurantAdapter();
+		model = helper.getAll();
+		startManagingCursor(model);
+		adapter = new RestaurantAdapter(model);
 		list.setAdapter(adapter);
 		
 		TabHost.TabSpec spec = getTabHost().newTabSpec("tag1");
@@ -125,12 +130,12 @@ public class LunchListActivity extends TabActivity {
 		}
 	};
 	
-	class RestaurantAdapter extends ArrayAdapter<Restaurant> {
-		RestaurantAdapter() {
-			super(LunchListActivity.this, R.layout.row, model);
+	class RestaurantAdapter extends CursorAdapter {
+		RestaurantAdapter(Cursor c) {
+			super(LunchListActivity.this, c);
 		}
 
-
+/*
 		public View getView(int position, View convertView, ViewGroup parent) {
 			View row = convertView;
 			RestaurantHolder holder = null;
@@ -149,6 +154,26 @@ public class LunchListActivity extends TabActivity {
 			holder.populateFrom(model.get(position));
 
 			return(row);
+		}
+*/
+
+		@Override
+		public void bindView(View row, Context ctxt, Cursor c) {
+			RestaurantHolder holder = (RestaurantHolder)row.getTag();
+			
+			holder.populateFrom(c, helper);
+		}
+
+
+		@Override
+		public View newView(Context ctxt, Cursor c, ViewGroup parent) {
+			LayoutInflater inflater = getLayoutInflater();
+			View row = inflater.inflate(R.layout.row, parent, false);
+			RestaurantHolder holder = new RestaurantHolder(row);
+			
+			row.setTag(holder);
+			
+			return (row);
 		}
 	}
 
