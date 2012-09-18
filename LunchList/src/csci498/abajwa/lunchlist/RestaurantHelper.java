@@ -3,6 +3,7 @@ package csci498.abajwa.lunchlist;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.content.ContentValues;
 
 public class RestaurantHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "lunchlist.db";
@@ -24,4 +25,14 @@ public class RestaurantHelper extends SQLiteOpenHelper {
 		// no-op, since will not be called until 2nd schema version exists
 	}
 
+	public void insert(String name, String address, String type, String notes) {
+		ContentValues cv = new ContentValues();
+		
+		cv.put("name", name);
+		cv.put("address", address);
+		cv.put("type", type);
+		cv.put("notes", notes);
+		
+		getWritableDatabase().insert("restaurants", name, cv);
+	}
 }
