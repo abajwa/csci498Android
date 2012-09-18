@@ -84,12 +84,7 @@ public class LunchListActivity extends TabActivity {
 
 		@Override
 		public void onClick(View v) {
-			current = new Restaurant();
-			current.setName(name.getText().toString());
-			current.setAddress(name.getText().toString());
-			current.setNotes(notes.getText().toString());
-
-			RadioGroup types = (RadioGroup)findViewById(R.id.types);
+			String type = null;
 
 			switch(types.getCheckedRadioButtonId()) {
 			case R.id.sit_down:
@@ -103,7 +98,7 @@ public class LunchListActivity extends TabActivity {
 				break;
 			}
 
-			adapter.add(current);
+			helper.insert(name.getText().toString(), address.getText().toString(), type, notes.getText().toString());
 		}
 	};
 
