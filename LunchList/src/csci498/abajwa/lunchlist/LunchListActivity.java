@@ -75,6 +75,35 @@ public class LunchListActivity extends TabActivity {
 	    
 	    isActive = new AtomicBoolean(true);
 	    
+	   getSavedData(savedInstanceState);
+	    
+	}
+	
+	public void getSavedData(Bundle savedInstanceState) {
+		 if (savedInstanceState != null) {
+		    	name.setText(savedInstanceState.getString("name"));
+		    	address.setText(savedInstanceState.getString("address"));
+		    	notes.setText(savedInstanceState.getString("notes"));
+		    	int type = savedInstanceState.getInt("type");
+		    	
+		    	if (type == 0) {
+					types.check(R.id.sit_down);
+				}
+				else if (type == 1) {
+					types.check(R.id.take_out);
+				}
+				else {
+					types.check(R.id.delivery);
+				}	    	
+		    }
+	}
+	
+	public void onSaveInstanceState(Bundle bundle) {
+		super.onSaveInstanceState(bundle);
+		bundle.putString("name", name.getText().toString());
+		bundle.putString("address", address.getText().toString());
+		bundle.putString("notes", notes.getText().toString());
+		bundle.putInt("type", types.getCheckedRadioButtonId());		
 	}
 	
 	private Runnable longTask = new Runnable() {
