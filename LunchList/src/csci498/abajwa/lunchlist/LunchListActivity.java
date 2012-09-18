@@ -34,12 +34,15 @@ public class LunchListActivity extends TabActivity {
 	EditText notes = null;
 	RadioGroup types = null;
 	Restaurant current = null;
+	
+	RestaurantHelper helper;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		
+		helper = new RestaurantHelper(this);		
 		name = (EditText)findViewById(R.id.name);
 		address = (EditText)findViewById(R.id.addr);
 		types = (RadioGroup)findViewById(R.id.types);
@@ -69,6 +72,12 @@ public class LunchListActivity extends TabActivity {
 	    
 	    list.setOnItemClickListener(onListClick);
 	    
+	}
+	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		helper.close();
 	}
 	
 	private View.OnClickListener onSave = new View.OnClickListener() {
