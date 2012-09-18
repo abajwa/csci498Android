@@ -135,28 +135,6 @@ public class LunchListActivity extends TabActivity {
 			super(LunchListActivity.this, c);
 		}
 
-/*
-		public View getView(int position, View convertView, ViewGroup parent) {
-			View row = convertView;
-			RestaurantHolder holder = null;
-
-			if (row == null) {                          
-				LayoutInflater inflater = getLayoutInflater();
-
-				row = inflater.inflate(R.layout.row, parent, false);
-				holder = new RestaurantHolder(row);
-				row.setTag(holder);
-			}
-			else {
-				holder = (RestaurantHolder)row.getTag();
-			}
-
-			holder.populateFrom(model.get(position));
-
-			return(row);
-		}
-*/
-
 		@Override
 		public void bindView(View row, Context ctxt, Cursor c) {
 			RestaurantHolder holder = (RestaurantHolder)row.getTag();
@@ -188,14 +166,14 @@ public class LunchListActivity extends TabActivity {
 			icon = (ImageView)row.findViewById(R.id.icon);
 		}
 
-		void populateFrom(Restaurant r) {
-			name.setText(r.getName());
-			address.setText(r.getAddress());
+		void populateFrom(Cursor c, RestaurantHelper helper) {
+			name.setText(helper.getName(c));
+			address.setText(helper.getAddress(c));
 
-			if (r.getType().equals("sit_down")) {
+			if (helper.getType(c).equals("sit_down")) {
 				icon.setImageResource(R.drawable.ball_red);
 			}
-			else if (r.getType().equals("take_out")) {
+			else if (helper.getType(c).equals("take_out")) {
 				icon.setImageResource(R.drawable.ball_yellow);
 			}
 			else {
