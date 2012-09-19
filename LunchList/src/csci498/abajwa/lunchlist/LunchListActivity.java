@@ -6,6 +6,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.app.ListActivity;
 import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -29,7 +30,7 @@ import android.widget.TextView;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-public class LunchListActivity extends TabActivity {
+public class LunchListActivity extends ListActivity {
 	Cursor model = null;
 	RestaurantAdapter adapter = null; 
 	
@@ -46,37 +47,10 @@ public class LunchListActivity extends TabActivity {
 		setContentView(R.layout.main);
 		
 		helper = new RestaurantHelper(this);		
-		name = (EditText)findViewById(R.id.name);
-		address = (EditText)findViewById(R.id.addr);
-		types = (RadioGroup)findViewById(R.id.types);
-		notes = (EditText)findViewById(R.id.notes);
-
-		Button save = (Button)findViewById(R.id.save);
-
-		save.setOnClickListener(onSave);
-
-		ListView list = (ListView)findViewById(R.id.restaurants);
-
 		model = helper.getAll();
 		startManagingCursor(model);
 		adapter = new RestaurantAdapter(model);
-		list.setAdapter(adapter);
-		
-		TabHost.TabSpec spec = getTabHost().newTabSpec("tag1");
-	    
-	    spec.setContent(R.id.restaurants);
-	    spec.setIndicator("List", getResources().getDrawable(R.drawable.list));
-	    getTabHost().addTab(spec);
-	    
-	    spec=getTabHost().newTabSpec("tag2");
-	    spec.setContent(R.id.details);
-	    spec.setIndicator("Details", getResources().getDrawable(R.drawable.restaurant));
-	    getTabHost().addTab(spec);
-	    
-	    getTabHost().setCurrentTab(0);
-	    
-	    list.setOnItemClickListener(onListClick);
-	    
+		setListAdapter(adapter);	    
 	}
 	
 	@Override
@@ -84,29 +58,6 @@ public class LunchListActivity extends TabActivity {
 		super.onDestroy();
 		helper.close();
 	}
-	
-	private View.OnClickListener onSave = new View.OnClickListener() {
-
-		@Override
-		public void onClick(View v) {
-			String type = null;
-
-			switch(types.getCheckedRadioButtonId()) {
-			case R.id.sit_down:
-				type = "sit_down";
-				break;
-			case R.id.take_out:
-				type = "take_out";
-				break;
-			case R.id.delivery:
-				type = "delivery";
-				break;
-			}
-
-			helper.insert(name.getText().toString(), address.getText().toString(), type, notes.getText().toString());
-			model.requery();
-		}
-	};
 
 	private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener() {
 		@Override
