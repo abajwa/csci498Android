@@ -1,45 +1,25 @@
 package csci498.abajwa.lunchlist;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
-
-import android.os.Bundle;
-import android.os.SystemClock;
 import android.app.ListActivity;
-import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.support.v4.widget.CursorAdapter;
-import android.view.LayoutInflater;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.LayoutInflater;
+import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RadioGroup;
-import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.AdapterView;
-import android.widget.Toast;
 
 public class LunchListActivity extends ListActivity {
 	public final static String ID_EXTRA="apt.tutorial._ID";
 	Cursor model = null;
 	RestaurantAdapter adapter = null; 
-	
-	EditText name = null;
-	EditText address = null;
-	EditText notes = null;
-	RadioGroup types = null;
-	
 	RestaurantHelper helper;
 
 	@Override
@@ -66,6 +46,22 @@ public class LunchListActivity extends ListActivity {
 			
 		i.putExtra(ID_EXTRA, String.valueOf(id));
 		startActivity(i);
+	}
+	
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    new MenuInflater(this).inflate(R.menu.option, menu);
+
+	    return(super.onCreateOptionsMenu(menu));
+	}
+
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId()==R.id.add) {
+			startActivity(new Intent(LunchListActivity.this, DetailForm.class));
+			
+			return(true);
+		}
+		
+		return(super.onOptionsItemSelected(item));
 	}
 	
 	class RestaurantAdapter extends CursorAdapter {
