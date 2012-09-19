@@ -57,6 +57,15 @@ public class DetailForm extends Activity {
 				type = "delivery";
 				break;
 			}
+			
+			if (restaurantId == null) {
+				helper.insert(name.getText().toString(), address.getText().toString(), type, notes.getText().toString());
+			}
+			else {
+				helper.update(restaurantId, name.getText().toString(), address.getText().toString(), type, notes.getText().toString());
+			}
+			
+			finish();
 		}
 	};
 	
