@@ -31,6 +31,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 public class LunchListActivity extends ListActivity {
+	public final static String ID_EXTRA="apt.tutorial._ID";
 	Cursor model = null;
 	RestaurantAdapter adapter = null; 
 	
@@ -59,14 +60,13 @@ public class LunchListActivity extends ListActivity {
 		helper.close();
 	}
 
-	private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener() {
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-			Intent i = new Intent(LunchListActivity.this, DetailForm.class);
+	@Override
+	public void onListItemClick(ListView list, View view, int position, long id) {
+		Intent i = new Intent(LunchListActivity.this, DetailForm.class);
 			
-			startActivity(i);
-		}
-	};
+		i.putExtra(ID_EXTRA, String.valueOf(id));
+		startActivity(i);
+	}
 	
 	class RestaurantAdapter extends CursorAdapter {
 		RestaurantAdapter(Cursor c) {
