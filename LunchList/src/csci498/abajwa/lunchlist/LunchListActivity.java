@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.app.TabActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
@@ -110,22 +111,9 @@ public class LunchListActivity extends TabActivity {
 	private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener() {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-			model.moveToPosition(position);			
-			name.setText(helper.getName(model));
-			address.setText(helper.getAddress(model));
-			notes.setText(helper.getNotes(model));
+			Intent i = new Intent(LunchListActivity.this, DetailForm.class);
 			
-			if (helper.getType(model).equals("sit_down")) {
-				types.check(R.id.sit_down);
-			}
-			else if (helper.getType(model).equals("take_out")) {
-				types.check(R.id.take_out);
-			}
-			else {
-				types.check(R.id.delivery);
-			}
-			
-			getTabHost().setCurrentTab(1);
+			startActivity(i);
 		}
 	};
 	
