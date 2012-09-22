@@ -11,6 +11,7 @@
     <string name="sit_down">Sit-Down</string>
     <string name="delivery">Delivery</string>
 	<string name="notes_label">Notes:</string>
+	<string name="web_label">Webpage:</string>
 	<string name="save">Save</string>
 	
 </resources>

@@ -53,6 +53,17 @@
                     </TableRow>
                     
                     <TableRow>
+                          <TextView
+                            android:text="@string/web_label"
+                            android:paddingRight="2dip"
+                            android:paddingLeft="2dip" />
+                        
+                        <EditText
+                            android:id="@+id/webpage"
+                            android:maxWidth="140sp" />
+                    </TableRow>
+                    
+                    <TableRow>
                         <TextView android:text="@string/type_label" />
                         
                         <RadioGroup android:id="@+id/types">

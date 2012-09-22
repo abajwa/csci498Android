@@ -44,6 +44,11 @@
 	          <EditText android:id="@+id/addr" />
 	        </TableRow>
 	        
+	        <TableRow >
+	            <TextView android:text="@string/web_label"/>
+	            <EditText android:id="@+id/webpage" />
+	        </TableRow>
+	        
 	        <TableRow>
 	          <TextView android:text="@string/type_label" />
 	          <RadioGroup android:id="@+id/types">
