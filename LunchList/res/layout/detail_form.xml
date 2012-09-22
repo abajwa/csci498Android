@@ -20,6 +20,11 @@
     </TableRow>
     
     <TableRow>
+        <TextView android:text="Webpage:" />
+        <EditText android:id="@+id/webpage" />
+    </TableRow>
+    
+    <TableRow>
       <TextView android:text="Type:" />
       <RadioGroup android:id="@+id/types">
         <RadioButton android:id="@+id/take_out"
