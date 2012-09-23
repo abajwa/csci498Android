@@ -5,6 +5,7 @@ public class Restaurant {
 	private String address = "";
 	private String type = "";
 	private String notes = "";
+	private String webpage = "";
 	
 	public String getType() {
 		return type;
@@ -40,6 +41,14 @@ public class Restaurant {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+
+	public String getWebpage() {
+		return webpage;
+	}
+
+	public void setWebpage(String webpage) {
+		this.webpage = webpage;
 	}
 
 }

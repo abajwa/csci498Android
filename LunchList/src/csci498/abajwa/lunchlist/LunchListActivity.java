@@ -94,11 +94,13 @@ public class LunchListActivity extends ListActivity {
 	static class RestaurantHolder {
 		private TextView name = null;
 		private TextView address = null;
+		private TextView webpage = null;
 		private ImageView icon = null;
 
 		RestaurantHolder(View row) {
 			name = (TextView)row.findViewById(R.id.title);
 			address = (TextView)row.findViewById(R.id.address);
+			webpage = (TextView)row.findViewById(R.id.webpage);
 			icon = (ImageView)row.findViewById(R.id.icon);
 		}
 

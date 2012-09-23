@@ -17,7 +17,7 @@ public class RestaurantHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL("CREATE TABLE restaurants (_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT," +
-				" address TEXT, type TEXT, notes TEXT);");
+				" address TEXT, type TEXT, notes TEXT, webpage TEXT);");
 	}
 	
 	@Override
@@ -25,25 +25,27 @@ public class RestaurantHelper extends SQLiteOpenHelper {
 		// no-op, since will not be called until 2nd schema version exists
 	}
 
-	public void insert(String name, String address, String type, String notes) {
+	public void insert(String name, String address, String type, String notes, String webpage) {
 		ContentValues cv = new ContentValues();
 		
 		cv.put("name", name);
 		cv.put("address", address);
 		cv.put("type", type);
 		cv.put("notes", notes);
+		cv.put("webpage", webpage);
 		
 		getWritableDatabase().insert("restaurants", "name", cv);
 	}
 	
-	public void update(String id, String name, String address, String type, String notes) {
+	public void update(String id, String name, String address, String type, String notes, String webpage) {
 		ContentValues cv = new ContentValues();
 		String[] args = {id};
 		
 		cv.put("name", name);
 		cv.put("address", address);
 		cv.put("type", type);
-		cv.put("note", notes);
+		cv.put("notes", notes);
+		cv.put("webpage", webpage);
 		
 		getWritableDatabase().update("restaurants", cv, "_ID=?", args);
 		
@@ -52,11 +54,11 @@ public class RestaurantHelper extends SQLiteOpenHelper {
 	public Cursor getById(String id) {
 		String[] args = {id};
 		
-		return(getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes FROM restaurants WHERE _ID=?", args));
+		return(getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes, webpage FROM restaurants WHERE _ID=?", args));
 	}
 	
 	public Cursor getAll() {
-		return (getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes FROM restaurants ORDER BY name", null));
+		return (getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes, webpage FROM restaurants ORDER BY name", null));
 	}
 	
 	public String getName(Cursor c) {
@@ -73,6 +75,10 @@ public class RestaurantHelper extends SQLiteOpenHelper {
 	
 	public String getNotes(Cursor c) {
 		return (c.getString(4));
+	}
+	
+	public String getWebpage(Cursor c) {
+		return (c.getString(5));
 	}
 	
 }

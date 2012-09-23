@@ -13,6 +13,7 @@ public class DetailForm extends Activity {
 	EditText name = null;
 	EditText address = null;
 	EditText notes = null;
+	EditText webpage = null;
 	RadioGroup types = null;
 	
 	RestaurantHelper helper;
@@ -28,6 +29,7 @@ public class DetailForm extends Activity {
 		address = (EditText)findViewById(R.id.addr);
 		types = (RadioGroup)findViewById(R.id.types);
 		notes = (EditText)findViewById(R.id.notes);
+		webpage = (EditText)findViewById(R.id.webpage);
 
 		Button save = (Button)findViewById(R.id.save);
 
@@ -59,10 +61,10 @@ public class DetailForm extends Activity {
 			}
 			
 			if (restaurantId == null) {
-				helper.insert(name.getText().toString(), address.getText().toString(), type, notes.getText().toString());
+				helper.insert(name.getText().toString(), address.getText().toString(), type, notes.getText().toString(), webpage.getText().toString());
 			}
 			else {
-				helper.update(restaurantId, name.getText().toString(), address.getText().toString(), type, notes.getText().toString());
+				helper.update(restaurantId, name.getText().toString(), address.getText().toString(), type, notes.getText().toString(), webpage.getText().toString());
 			}
 			
 			finish();
@@ -83,6 +85,7 @@ public class DetailForm extends Activity {
 		name.setText(helper.getName(c));
 		address.setText(helper.getAddress(c));
 		notes.setText(helper.getNotes(c));
+		webpage.setText(helper.getWebpage(c));
 		
 		if (helper.getType(c).equals("sit_down")) {
 			types.check(R.id.sit_down);
