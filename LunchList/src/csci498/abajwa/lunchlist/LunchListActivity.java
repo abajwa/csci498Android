@@ -3,8 +3,10 @@ package csci498.abajwa.lunchlist;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,14 +23,18 @@ public class LunchListActivity extends ListActivity {
 	Cursor model = null;
 	RestaurantAdapter adapter = null; 
 	RestaurantHelper helper;
+	
+	SharedPreferences prefs;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		
 		helper = new RestaurantHelper(this);		
-		model = helper.getAll();
+		model = helper.getAll(prefs.getString("sort_order", "name"));
 		startManagingCursor(model);
 		adapter = new RestaurantAdapter(model);
 		setListAdapter(adapter);	    
