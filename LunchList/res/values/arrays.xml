@@ -14,4 +14,9 @@
             <item >address ASC</item>
             <item >address DESC</item>
         </string-array>
+        <string-array name="default_type">
+            <item >take-out</item>
+            <item >sit-down</item>
+            <item >delivery</item>
+        </string-array>
     </resources>

@@ -7,4 +7,5 @@
         android:entries="@array/sort_names"
         android:entryValues="@array/sort_clauses"
         android:dialogTitle="Choose a sort order" />
+    <ListPreference android:entries="@array/default_type" android:entryValues="@array/default_type" android:dialogTitle="Default Type" android:title="Default Type" android:key="default_type" android:summary="Choose the default restaurant type"/>
 </PreferenceScreen>
