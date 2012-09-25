@@ -1,8 +1,10 @@
 package csci498.abajwa.lunchlist;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +19,8 @@ public class DetailForm extends Activity {
 	
 	RestaurantHelper helper;
 	String restaurantId = null;
+	
+	SharedPreferences prefs;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,19 @@ public class DetailForm extends Activity {
 		
 		if (restaurantId != null) {
 			load();
+		}
+		
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		
+		String type = prefs.getString("default_type", "take-out");
+		if (type.equals("take-out")) {
+			types.check(types.getChildAt(0).getId());
+		}
+		else if (type.equals("sit-down")) {
+			types.check(types.getChildAt(1).getId());
+		}
+		else {
+			types.check(types.getChildAt(2).getId());
 		}
 	}
 
