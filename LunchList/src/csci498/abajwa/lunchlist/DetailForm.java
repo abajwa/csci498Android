@@ -1,10 +1,14 @@
 package csci498.abajwa.lunchlist;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -57,6 +61,29 @@ public class DetailForm extends Activity {
 		}
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    new MenuInflater(this).inflate(R.menu.detailoptions, menu);
+
+	    return(super.onCreateOptionsMenu(menu));
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == R.id.add) {
+			startActivity(new Intent(DetailForm.this, DetailForm.class));
+			
+			return (true);
+		}
+		else if (item.getItemId() == R.id.prefs) {
+			startActivity(new Intent(this, EditPreferences.class));
+			
+			return (true);
+		}
+		
+		return(super.onOptionsItemSelected(item));
+	}
+	
 	private View.OnClickListener onSave = new View.OnClickListener() {
 
 		@Override
