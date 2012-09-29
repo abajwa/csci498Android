@@ -9,5 +9,18 @@
     <string name="notes">notes</string>
     <string name="type">type</string>
     <string name="feed">feed</string>
-
+    
+    <string name="take_out">Take-Out</string>
+    <string name="sit_down">Sit-Down</string>
+    <string name="delivery">Delivery</string>
+    
+    <!-- Detail Form Strings -->
+    <string name="address_label">Address:</string>
+    <string name="feed_hint">Feed URL</string>
+    <string name="name_label">Name:</string>
+    <string name="notes_hint">Notes</string>
+    <string name="notes_label">Notes:</string>
+    <string name="save">Save</string>
+    <string name="type_label">Type:</string>
+    
 </resources>
