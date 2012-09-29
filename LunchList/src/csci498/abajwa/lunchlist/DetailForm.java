@@ -38,27 +38,46 @@ public class DetailForm extends Activity {
 		if (restaurantId != null) {
 			load();
 		}
+		
+		Restaurant storedRestaurant = (Restaurant) getLastNonConfigurationInstance();
+		if (storedRestaurant != null) {
+			name.setText(storedRestaurant.getName());
+			address.setText(storedRestaurant.getAddress());
+			notes.setText(storedRestaurant.getNotes());
+			
+			if (storedRestaurant.getType().equals("sit_down")) {
+				types.check(0);
+			}
+			else if (storedRestaurant.getType().equals("take_out")) {
+				types.check(1);
+			}
+			else {
+				types.check(2);
+			}
+		}
+		
 	}
 	
 	@Override
-	public void onSaveInstanceState(Bundle state) {
-		super.onSaveInstanceState(state);
+	public Object onRetainNonConfigurationInstance() {
+		Restaurant storage = new Restaurant();
+		storage.setName(name.getText().toString());
+		storage.setAddress(address.getText().toString());
+		storage.setNotes(notes.getText().toString());
 		
-		state.putString(getString(R.string.name), name.getText().toString());
-		state.putString(getString(R.string.address), address.getText().toString());
-		state.putString(getString(R.string.notes), notes.getText().toString());
-		state.putInt(getString(R.string.type), types.getCheckedRadioButtonId());
-	}
-	
-	@Override
-	public void onRestoreInstanceState(Bundle state) {
-		super.onRestoreInstanceState(state);
+		switch(types.getCheckedRadioButtonId()) {
+		case R.id.sit_down:
+			storage.setType("sit_down");
+			break;
+		case R.id.take_out:
+			storage.setType("take_out");
+			break;
+		case R.id.delivery:
+			storage.setType("delivery");
+			break;
+		}
 		
-		name.setText(state.getString(getString(R.string.name)));
-		address.setText(state.getString(getString(R.string.address)));
-		notes.setText(state.getString(getString(R.string.notes)));
-		types.check(state.getInt(getString(R.string.type)));
-		
+		return storage;
 	}
 
 	public void onDestroy() {
