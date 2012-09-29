@@ -3,6 +3,8 @@ package csci498.abajwa.lunchlist;
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,6 +42,12 @@ public class DetailForm extends Activity {
 		if (restaurantId != null) {
 			load();
 		}
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		new MenuInflater(this).inflate(R.menu.details_options, menu);
+		return super.onCreateOptionsMenu(menu);
 	}
 	
 	@Override
