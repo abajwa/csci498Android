@@ -31,7 +31,7 @@ public class Restaurant {
 	}
 	
 	public String toString() {
-		return(getName());
+		return getName();
 	}
 
 	public String getNotes() {

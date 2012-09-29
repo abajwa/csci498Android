@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.content.ContentValues;
 
 public class RestaurantHelper extends SQLiteOpenHelper {
+	
 	private static final String DATABASE_NAME = "lunchlist.db";
 	private static final int SCHEMA_VERSION = 1;
 	
@@ -52,27 +53,27 @@ public class RestaurantHelper extends SQLiteOpenHelper {
 	public Cursor getById(String id) {
 		String[] args = {id};
 		
-		return(getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes FROM restaurants WHERE _ID=?", args));
+		return getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes FROM restaurants WHERE _ID=?", args);
 	}
 	
 	public Cursor getAll(String orderBy) {
-		return (getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes FROM restaurants ORDER BY "+ orderBy, null));
+		return getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes FROM restaurants ORDER BY "+ orderBy, null);
 	}
 	
 	public String getName(Cursor c) {
-		return (c.getString(1));
+		return c.getString(1);
 	}
 	
 	public String getAddress(Cursor c) {
-		return (c.getString(2));
+		return c.getString(2);
 	}
 	
 	public String getType(Cursor c) {
-		return (c.getString(3));
+		return c.getString(3);
 	}
 	
 	public String getNotes(Cursor c) {
-		return (c.getString(4));
+		return c.getString(4);
 	}
 	
 }

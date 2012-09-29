@@ -19,9 +19,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class LunchListActivity extends ListActivity {
+	
 	public final static String ID_EXTRA="apt.tutorial._ID";
-	Cursor model = null;
-	RestaurantAdapter adapter = null; 
+	Cursor model;
+	RestaurantAdapter adapter; 
 	RestaurantHelper helper;
 	
 	SharedPreferences prefs;
@@ -36,17 +37,6 @@ public class LunchListActivity extends ListActivity {
 		initList();		
 		prefs.registerOnSharedPreferenceChangeListener(prefListener);
 	}
-	
-	private SharedPreferences.OnSharedPreferenceChangeListener prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
-		
-		@Override
-		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-			if (key.equals("sort_order")) {
-				initList();
-			}
-		}
-	};
-	
 	
 	private void initList() {
 		if (model != null) {
@@ -64,14 +54,6 @@ public class LunchListActivity extends ListActivity {
 	public void onDestroy() {
 		super.onDestroy();
 		helper.close();
-	}
-
-	@Override
-	public void onListItemClick(ListView list, View view, int position, long id) {
-		Intent i = new Intent(LunchListActivity.this, DetailForm.class);
-			
-		i.putExtra(ID_EXTRA, String.valueOf(id));
-		startActivity(i);
 	}
 	
 	@Override
@@ -95,6 +77,24 @@ public class LunchListActivity extends ListActivity {
 		}
 		
 		return(super.onOptionsItemSelected(item));
+	}
+	
+	private SharedPreferences.OnSharedPreferenceChangeListener prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+		
+		@Override
+		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+			if (key.equals("sort_order")) {
+				initList();
+			}
+		}
+	};
+	
+	@Override
+	public void onListItemClick(ListView list, View view, int position, long id) {
+		Intent i = new Intent(LunchListActivity.this, DetailForm.class);
+			
+		i.putExtra(ID_EXTRA, String.valueOf(id));
+		startActivity(i);
 	}
 	
 	class RestaurantAdapter extends CursorAdapter {
@@ -123,6 +123,7 @@ public class LunchListActivity extends ListActivity {
 	}
 
 	static class RestaurantHolder {
+		
 		private TextView name = null;
 		private TextView address = null;
 		private ImageView icon = null;
@@ -147,5 +148,7 @@ public class LunchListActivity extends ListActivity {
 				icon.setImageResource(R.drawable.ball_green);
 			}
 		}
+		
 	}
+	
 }

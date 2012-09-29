@@ -10,13 +10,13 @@ import android.widget.RadioGroup;
 
 public class DetailForm extends Activity {
 	
-	EditText name = null;
-	EditText address = null;
-	EditText notes = null;
-	RadioGroup types = null;
+	EditText name;
+	EditText address;
+	EditText notes;
+	RadioGroup types;
 	
 	RestaurantHelper helper;
-	String restaurantId = null;
+	String restaurantId;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,35 @@ public class DetailForm extends Activity {
 		}
 	}
 
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		
+		helper.close();
+	}
+	
+	public void load() {
+
+		Cursor c = helper.getById(restaurantId);
+		
+		c.moveToFirst();
+		name.setText(helper.getName(c));
+		address.setText(helper.getAddress(c));
+		notes.setText(helper.getNotes(c));
+		
+		if (helper.getType(c).equals("sit_down")) {
+			types.check(R.id.sit_down);
+		}
+		else if (helper.getType(c).equals("take_out")) {
+			types.check(R.id.take_out);
+		}
+		else {
+			types.check(R.id.delivery);
+		}
+		
+		c.close();
+	}
+	
 	private View.OnClickListener onSave = new View.OnClickListener() {
 
 		@Override
@@ -69,31 +98,4 @@ public class DetailForm extends Activity {
 		}
 	};
 	
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-		
-		helper.close();
-	}
-	
-	public void load() {
-		Cursor c = helper.getById(restaurantId);
-		
-		c.moveToFirst();
-		name.setText(helper.getName(c));
-		address.setText(helper.getAddress(c));
-		notes.setText(helper.getNotes(c));
-		
-		if (helper.getType(c).equals("sit_down")) {
-			types.check(R.id.sit_down);
-		}
-		else if (helper.getType(c).equals("take_out")) {
-			types.check(R.id.take_out);
-		}
-		else {
-			types.check(R.id.delivery);
-		}
-		
-		c.close();
-	}
 }
