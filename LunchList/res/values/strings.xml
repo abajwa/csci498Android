@@ -14,7 +14,7 @@
     <string name="sit_down">Sit-Down</string>
     <string name="delivery">Delivery</string>
     
-    <!-- Detail Form Strings -->
+    <!-- Detail Form XML Strings -->
     <string name="address_label">Address:</string>
     <string name="feed_hint">Feed URL</string>
     <string name="name_label">Name:</string>
@@ -22,5 +22,8 @@
     <string name="notes_label">Notes:</string>
     <string name="save">Save</string>
     <string name="type_label">Type:</string>
+    
+    <!-- Detail Form Java Strings -->
+    <string name="no_internet_error">Sorry, the Internet is not available</string>
     
 </resources>

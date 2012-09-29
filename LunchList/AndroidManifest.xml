@@ -7,6 +7,8 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="15" />
     <supports-screens android:normalScreens="true" android:smallScreens="false" android:largeScreens="true"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:icon="@drawable/my_icon"
