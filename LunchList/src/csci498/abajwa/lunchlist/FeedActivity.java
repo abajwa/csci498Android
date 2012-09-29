@@ -1,22 +1,74 @@
 package csci498.abajwa.lunchlist;
 
-import org.mcsoxford.rss.RSSFeed;
-import org.mcsoxford.rss.RSSItem;
-import org.mcsoxford.rss.RSSReader;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import org.mcsoxford.rss.RSSItem;
+import org.mcsoxford.rss.RSSFeed;
+import org.mcsoxford.rss.RSSReader;
 
-public class FeedActivity extends Activity {
+public class FeedActivity extends ListActivity {
 	
-	private static class FeedTask extends AsyncTask<String, Void, Void> {
+	public static final String FEED_URL = "csci498.abajwa.lunchlist.FEED_URL";
+	private InstanceState state;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		state = (InstanceState) getLastNonConfigurationInstance();
+		
+		if (state == null) {
+			state = new InstanceState();
+			state.task = new FeedTask(this);
+			state.task.execute(getIntent().getStringExtra(FEED_URL));
+		}
+		else {
+			if (state.task != null) {
+				state.task.attach(this);
+			}
+			
+			if (state.feed != null) {
+				setFeed(state.feed);
+			}
+		}
+	}
+	
+	@Override
+	public Object onRetainNonConfigurationInstance() {
+		if (state.task != null) {
+			state.task.detach();
+		}
+		return state;
+	}
+	
+	private void setFeed(RSSFeed feed) {
+		state.feed = feed;
+		setListAdapter(new FeedAdapter(feed));
+	}
+	
+	private void goBlooey(Throwable t) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		
+		builder.setTitle("Exception!").setMessage(t.toString()).setPositiveButton("OK", null).show();
+	}
+	
+	private static class InstanceState {
+		
+		RSSFeed feed;
+		FeedTask task;
+		
+	}
+	
+	private static class FeedTask extends AsyncTask<String, Void, RSSFeed> {
 		
 		private RSSReader reader = new RSSReader();
 		private Exception e;
@@ -58,11 +110,6 @@ public class FeedActivity extends Activity {
 			}
 		}
 		
-		private void goBlooey(Throwable t) {
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			
-			builder.setTile("Exception!").setMessage(t.toString()).setPositiveButton("OK", null).show();
-		}
 	}
 
 	private class FeedAdapter extends BaseAdapter {
@@ -71,7 +118,7 @@ public class FeedActivity extends Activity {
 		
 		FeedAdapter(RSSFeed feed) {
 			super();
-			this.feed=feed;
+			this.feed = feed;
 		}
 		
 		public int getCount() {
@@ -87,17 +134,16 @@ public class FeedActivity extends Activity {
 		}
 		
 		public View getView(int position, View convertView,	ViewGroup parent) {
-			View row=convertView;
-			if (row==null) {
-				LayoutInflater inflater=getLayoutInflater();
-				row=inflater.inflate(android.R.layout.simple_list_item_1, parent, false);
+			View row = convertView;
+			if (row == null) {
+				LayoutInflater inflater = getLayoutInflater();
+				row = inflater.inflate(android.R.layout.simple_list_item_1, parent, false);
 			}
 			
-			RSSItem item=(RSSItem)getItem(position);
+			RSSItem item = (RSSItem) getItem(position);
 			((TextView)row).setText(item.getTitle());
 			
-			return(row);
+			return row;
 		}
 	}
-	
 }

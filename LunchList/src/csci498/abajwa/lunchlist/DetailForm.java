@@ -73,7 +73,7 @@ public class DetailForm extends Activity {
 	}
 	
 	private boolean isNetworkAvailable() {
-		ConnectivityManager cm = (ConnectivitiyManager) getSystemService(CONNECTIVITY_SERVICE);
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 		NetworkInfo info = cm.getActiveNetworkInfo();
 		
 		return (info != null);
