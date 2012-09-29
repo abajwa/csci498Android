@@ -22,21 +22,22 @@ public class RestaurantHelper extends SQLiteOpenHelper {
 	
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// no-op, since will not be called until 2nd schema version exists
+		db.execSQL("ALTER TABLE restaurants ADD COLUMN feed TEXT");
 	}
 
-	public void insert(String name, String address, String type, String notes) {
+	public void insert(String name, String address, String type, String notes, String feed) {
 		ContentValues cv = new ContentValues();
 		
 		cv.put("name", name);
 		cv.put("address", address);
 		cv.put("type", type);
 		cv.put("notes", notes);
+		cv.put("feed",feed);
 		
 		getWritableDatabase().insert("restaurants", "name", cv);
 	}
 	
-	public void update(String id, String name, String address, String type, String notes) {
+	public void update(String id, String name, String address, String type, String notes, String feed) {
 		ContentValues cv = new ContentValues();
 		String[] args = {id};
 		
@@ -44,6 +45,7 @@ public class RestaurantHelper extends SQLiteOpenHelper {
 		cv.put("address", address);
 		cv.put("type", type);
 		cv.put("note", notes);
+		cv.put("feed",feed);
 		
 		getWritableDatabase().update("restaurants", cv, "_ID=?", args);
 		
@@ -52,11 +54,11 @@ public class RestaurantHelper extends SQLiteOpenHelper {
 	public Cursor getById(String id) {
 		String[] args = {id};
 		
-		return getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes FROM restaurants WHERE _ID=?", args);
+		return getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes, feed FROM restaurants WHERE _ID=?", args);
 	}
 	
 	public Cursor getAll(String orderBy) {
-		return getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes FROM restaurants ORDER BY "+ orderBy, null);
+		return getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes, feed FROM restaurants ORDER BY "+ orderBy, null);
 	}
 	
 	public String getName(Cursor c) {
@@ -73,6 +75,10 @@ public class RestaurantHelper extends SQLiteOpenHelper {
 	
 	public String getNotes(Cursor c) {
 		return c.getString(4);
+	}
+	
+	public String getFeed(Cursor c) {
+		return c.getString(5);
 	}
 	
 }

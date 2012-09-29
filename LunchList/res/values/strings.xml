@@ -8,5 +8,6 @@
     <string name="address">address</string>
     <string name="notes">notes</string>
     <string name="type">type</string>
+    <string name="feed">feed</string>
 
 </resources>
