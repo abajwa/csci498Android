@@ -3,10 +3,13 @@ package csci498.abajwa.lunchlist;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -43,6 +46,12 @@ public class FeedActivity extends ListActivity {
 	}
 	
 	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(item.toString())));
+		return true;
+	}
+	
+	@Override
 	public Object onRetainNonConfigurationInstance() {
 		if (state.task != null) {
 			state.task.detach();
@@ -58,7 +67,7 @@ public class FeedActivity extends ListActivity {
 	private void goBlooey(Throwable t) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		
-		builder.setTitle("Exception!").setMessage(t.toString()).setPositiveButton("OK", null).show();
+		builder.setTitle(getString(R.string.exception)).setMessage(t.toString()).setPositiveButton(getString(R.string.OK), null).show();
 	}
 	
 	private static class InstanceState {

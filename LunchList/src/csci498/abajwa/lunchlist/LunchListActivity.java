@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 public class LunchListActivity extends ListActivity {
 	
-	public final static String ID_EXTRA="apt.tutorial._ID";
+	public final static String ID_EXTRA = "apt.tutorial._ID";
 	Cursor model;
 	RestaurantAdapter adapter; 
 	RestaurantHelper helper;
@@ -44,7 +44,7 @@ public class LunchListActivity extends ListActivity {
 			model.close();
 		}
 		
-		model = helper.getAll(prefs.getString("sort_order", "name"));
+		model = helper.getAll(prefs.getString(getString(R.string.sort_order), getString(R.string.name)));
 		startManagingCursor(model);
 		adapter = new RestaurantAdapter(model);
 		setListAdapter(adapter);
@@ -59,7 +59,6 @@ public class LunchListActivity extends ListActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    new MenuInflater(this).inflate(R.menu.option, menu);
-
 	    return(super.onCreateOptionsMenu(menu));
 	}
 
@@ -83,7 +82,7 @@ public class LunchListActivity extends ListActivity {
 		
 		@Override
 		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-			if (key.equals("sort_order")) {
+			if (key.equals(getString(R.string.sort_order))) {
 				initList();
 			}
 		}

@@ -10,9 +10,14 @@
     <string name="type">type</string>
     <string name="feed">feed</string>
     
+    <string name="sort_order">sort_order</string>
+    
     <string name="take_out">Take-Out</string>
     <string name="sit_down">Sit-Down</string>
     <string name="delivery">Delivery</string>
+    <string name="take_out_type">take_out</string>
+    <string name="sit_down_type">sit_down</string>
+    <string name="delivery_type">delivery</string>
     
     <!-- Detail Form XML Strings -->
     <string name="address_label">Address:</string>
@@ -25,5 +30,11 @@
     
     <!-- Detail Form Java Strings -->
     <string name="no_internet_error">Sorry, the Internet is not available</string>
+    
+    <!-- Feed Activity Strings -->
+    <string name="exception">Exception!</string>
+    <string name="OK">OK</string>
+    <string name="lunch_list_activity">LunchListActivity</string>
+    <string name="feed_parsing_exception">Exception parsing feed</string>
     
 </resources>

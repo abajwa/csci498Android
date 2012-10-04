@@ -1,10 +1,10 @@
 package csci498.abajwa.lunchlist;
 
 public class Restaurant {
-	private String name = "";
-	private String address = "";
-	private String type = "";
-	private String notes = "";
+	private String name;
+	private String address;
+	private String type;
+	private String notes;
 	
 	public String getType() {
 		return type;

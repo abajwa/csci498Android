@@ -102,7 +102,6 @@ public class DetailForm extends Activity {
 
 	public void onDestroy() {
 		super.onDestroy();
-		
 		helper.close();
 	}
 	
@@ -116,10 +115,10 @@ public class DetailForm extends Activity {
 		notes.setText(helper.getNotes(c));
 		feed.setText(helper.getFeed(c));
 		
-		if (helper.getType(c).equals("sit_down")) {
+		if (helper.getType(c).equals(getString(R.string.sit_down_type))) {
 			types.check(R.id.sit_down);
 		}
-		else if (helper.getType(c).equals("take_out")) {
+		else if (helper.getType(c).equals(R.string.take_out_type)) {
 			types.check(R.id.take_out);
 		}
 		else {
@@ -137,13 +136,13 @@ public class DetailForm extends Activity {
 
 			switch(types.getCheckedRadioButtonId()) {
 			case R.id.sit_down:
-				type = "sit_down";
+				type = getString(R.string.sit_down_type);
 				break;
 			case R.id.take_out:
-				type = "take_out";
+				type = getString(R.string.take_out_type);
 				break;
 			case R.id.delivery:
-				type = "delivery";
+				type = getString(R.string.delivery_type);
 				break;
 			}
 			
