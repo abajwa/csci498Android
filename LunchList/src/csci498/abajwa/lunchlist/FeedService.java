@@ -8,6 +8,7 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.os.Message;
 import android.os.Messenger;
+import android.os.SystemClock;
 import android.util.Log;
 
 public class FeedService extends IntentService {
@@ -21,6 +22,9 @@ public class FeedService extends IntentService {
 	
 	@Override
 	public void onHandleIntent(Intent i) {
+		
+		SystemClock.sleep(5000);
+		
 		RSSReader reader = new RSSReader();
 		Messenger messenger = (Messenger) i.getExtras().get(EXTRA_MESSENGER);
 		Message msg = Message.obtain();
