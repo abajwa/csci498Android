@@ -1,16 +1,13 @@
 package csci498.abajwa.lunchlist;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Messenger;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +16,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import org.mcsoxford.rss.RSSItem;
 import org.mcsoxford.rss.RSSFeed;
-import org.mcsoxford.rss.RSSReader;
 
 public class FeedActivity extends ListActivity {
 	
