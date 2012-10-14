@@ -27,6 +27,8 @@
     <string name="notes_label">Notes:</string>
     <string name="save">Save</string>
     <string name="type_label">Type:</string>
+    <string name="location">Location:</string>
+    <string name="not_set">(not set)</string>
     
     <!-- Detail Form Java Strings -->
     <string name="no_internet_error">Sorry, the Internet is not available</string>
