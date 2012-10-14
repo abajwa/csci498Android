@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -37,16 +35,18 @@ public class DetailForm extends Activity {
 		types = (RadioGroup)findViewById(R.id.types);
 		notes = (EditText)findViewById(R.id.notes);
 		feed = (EditText)findViewById(R.id.feed);
-
-		Button save = (Button)findViewById(R.id.save);
-
-		save.setOnClickListener(onSave);
 		
 		restaurantId = getIntent().getStringExtra(LunchListActivity.ID_EXTRA);
 		
 		if (restaurantId != null) {
 			load();
 		}
+	}
+	
+	@Override
+	public void onPause() {
+		save();
+		super.onPause();
 	}
 	
 	@Override
@@ -128,10 +128,8 @@ public class DetailForm extends Activity {
 		c.close();
 	}
 	
-	private View.OnClickListener onSave = new View.OnClickListener() {
-
-		@Override
-		public void onClick(View v) {
+	private void save() {
+		if (name.getText().toString().length() > 0) {
 			String type = null;
 
 			switch(types.getCheckedRadioButtonId()) {
