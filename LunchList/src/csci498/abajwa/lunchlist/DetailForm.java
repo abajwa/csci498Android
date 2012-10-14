@@ -86,6 +86,14 @@ public class DetailForm extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		if (restaurantId == null) {
+			menu.findItem(R.id.location).setEnabled(false);
+		}
+		return super.onPrepareOptionsMenu(menu);
+	}
+	
 	private boolean isNetworkAvailable() {
 		ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 		NetworkInfo info = cm.getActiveNetworkInfo();
