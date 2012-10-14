@@ -32,6 +32,7 @@
     
     <!-- Detail Form Java Strings -->
     <string name="no_internet_error">Sorry, the Internet is not available</string>
+    <string name="location_saved">Location saved</string>
     
     <!-- Feed Activity Strings -->
     <string name="exception">Exception!</string>
