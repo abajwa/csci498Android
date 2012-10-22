@@ -51,7 +51,7 @@ public class RestaurantHelper extends SQLiteOpenHelper {
 		cv.put("name", name);
 		cv.put("address", address);
 		cv.put("type", type);
-		cv.put("note", notes);
+		cv.put("notes", notes);
 		cv.put("feed",feed);
 		
 		getWritableDatabase().update("restaurants", cv, "_ID=?", args);
