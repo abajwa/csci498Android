@@ -30,6 +30,7 @@
         <service android:name=".FeedService"></service>
         <uses-library android:required="true" android:name="com.google.android.maps"/>
         <activity android:name="RestaurantMap"></activity>
+        <receiver android:name="OnBootReceiver" android:enabled="false"></receiver>
     </application>
 
 </manifest>
