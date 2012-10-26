@@ -12,7 +12,8 @@ import android.preference.PreferenceManager;
 
 public class OnBootReceiver extends BroadcastReceiver {
 	
-	public void onRecieve(Context ctxt, Intent intent) {
+	@Override
+	public void onReceive(Context ctxt, Intent intent) {
 		setAlarm(ctxt);
 	}
 
@@ -20,7 +21,7 @@ public class OnBootReceiver extends BroadcastReceiver {
 		AlarmManager mgr = (AlarmManager)ctxt.getSystemService(Context.ALARM_SERVICE);
 		Calendar cal = Calendar.getInstance();
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctxt);
-		String timeString = prefs.getString("alarm_time", "12:00");
+		String time = prefs.getString("alarm_time", "12:00");
 		
 		cal.set(Calendar.HOUR_OF_DAY, TimePreference.getHour(time));
 		cal.set(Calendar.MINUTE, TimePreference.getMinute(time));
