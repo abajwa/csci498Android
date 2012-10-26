@@ -40,4 +40,11 @@
     <string name="lunch_list_activity">LunchListActivity</string>
     <string name="feed_parsing_exception">Exception parsing feed</string>
     
+    <!-- Alarm XML Strings -->
+    <string name="lunch_time">It\'s time for lunch!</string>
+    
+    <!-- EditPreferences Strings -->
+    <string name="alarm">alarm</string>
+    <string name="alarm_time">alarm_time</string>
+    
 </resources>

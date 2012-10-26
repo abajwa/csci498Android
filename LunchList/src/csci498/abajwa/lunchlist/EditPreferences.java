@@ -35,7 +35,7 @@ public class EditPreferences extends PreferenceActivity {
 		
 		@Override
 		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-			if ("alarm".equals(key)) {
+			if (getString(R.string.alarm).equals(key)) {
 				boolean enabled = prefs.getBoolean(key, false);
 				int flag = (enabled ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED : PackageManager.COMPONENT_ENABLED_STATE_DISABLED_USER);
 				ComponentName component = new ComponentName(EditPreferences.this, OnBootReceiver.class);
@@ -49,7 +49,7 @@ public class EditPreferences extends PreferenceActivity {
 					OnBootReceiver.cancelAlarm(EditPreferences.this);
 				}
 			}
-			else if ("alarm_time".equals(key)) {
+			else if (getString(R.string.alarm_time).equals(key)) {
 				OnBootReceiver.cancelAlarm(EditPreferences.this);
 				OnBootReceiver.setAlarm(EditPreferences.this);
 			}
