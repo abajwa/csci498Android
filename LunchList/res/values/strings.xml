@@ -62,5 +62,7 @@
     <string name="use_notification">use_notification</string>
     <string name="lunch_notification_message">It\'s time for lunch! Aren\'t you hungry?</string>
     
+    <!-- WidgetService steings -->
+    <string name="empty">No restaurants!</string>
     
 </resources>
