@@ -58,6 +58,9 @@
     <string name="pref_summary">Choose the order the list uses</string>
     <string name="default_time">12:00</string>
     
+    <!-- OnAlarmReceiver Strings -->
+    <string name="use_notification">use_notification</string>
+    <string name="lunch_notification_message">It\'s time for lunch! Aren\'t you hungry?</string>
     
     
 </resources>

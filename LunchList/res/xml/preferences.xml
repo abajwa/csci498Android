@@ -9,7 +9,7 @@
         android:dialogTitle="@string/pref_order" />
     <CheckBoxPreference
         android:key="alarm"
-        android:title="string/alarm_title"
+        android:title="@string/alarm_title"
         android:summary="@string/alarm_summary" />
     <csci498.abajwa.lunchlist.TimePreference
         android:key="alarm_time"
