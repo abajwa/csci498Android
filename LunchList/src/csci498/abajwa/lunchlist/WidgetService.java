@@ -7,8 +7,6 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.database.Cursor;
 import android.widget.RemoteViews;
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 
 public class WidgetService extends IntentService {
 	
@@ -18,7 +16,7 @@ public class WidgetService extends IntentService {
 	
 	public void onHandleIntent(Intent intent) {
 		ComponentName me = new ComponentName(this, AppWidget.class);
-		RemoteViews updateViews = new RemoteViews("apt.tutorial", R.layout.widget);
+		RemoteViews updateViews = new RemoteViews("csci498.abajwa.lunchlist", R.layout.widget);
 		RestaurantHelper helper = new RestaurantHelper(this);
 		AppWidgetManager mgr = AppWidgetManager.getInstance(this);
 		
@@ -33,7 +31,7 @@ public class WidgetService extends IntentService {
 				int offset = (int)(count * Math.random());
 				String args[] = {String.valueOf(offset)};
 				
-				c = helper.getReadableDatabase().rawQuery("SELECT _ID,  name FROM restaurants LIMIT 1 OFFSET ?", args);
+				c = helper.getReadableDatabase().rawQuery("SELECT _ID, name FROM restaurants LIMIT 1 OFFSET ?", args);
 				c.moveToFirst();
 				updateViews.setTextViewText(R.id.name, c.getString(1));
 				
