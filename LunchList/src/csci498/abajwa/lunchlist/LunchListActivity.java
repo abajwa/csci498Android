@@ -3,7 +3,8 @@ package csci498.abajwa.lunchlist;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
 
 public class LunchListActivity extends FragmentActivity implements LunchFragment.OnRestaurantListener {
@@ -27,7 +28,18 @@ public class LunchListActivity extends FragmentActivity implements LunchFragment
 			startActivity(i);
 		}
 		else {
-			// umm... do something!
+			FragmentManager fragMgr = getSupportFragmentManager();
+			DetailFragment details = (DetailFragment)fragMgr.findFragmentById(R.id.details);
+			
+			if (details == null) {
+				details = DetailFragment.newInstance(id);
+				
+				FragmentTransaction xaction = fragMgr.beginTransaction();
+				xaction.add(R.id.details, details).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null).commit();
+			}
+			else {
+				details.loadRestaurant(String.valueOf(id));
+			}
 		}
 	}
 	
