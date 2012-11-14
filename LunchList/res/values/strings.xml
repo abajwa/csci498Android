@@ -19,6 +19,9 @@
     <string name="sit_down_type">sit_down</string>
     <string name="delivery_type">delivery</string>
     
+    <!-- Alarm Activity Strings -->
+    <string name="ringtone_error">Exception in playing ringtone</string>
+    
     <!-- Detail Form XML Strings -->
     <string name="address_label">Address:</string>
     <string name="feed_hint">Feed URL</string>
