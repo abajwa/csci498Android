@@ -71,4 +71,8 @@
     <!-- WidgetService steings -->
     <string name="empty">No restaurants!</string>
     
+    <!-- Detail Options Strings -->
+    <string name="call">Call</string>
+    <string name="map_title">Show on Map</string>
+    
 </resources>
