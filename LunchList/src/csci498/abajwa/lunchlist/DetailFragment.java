@@ -220,6 +220,10 @@ public class DetailFragment extends Fragment {
 		}
 	};
 	
+	private boolean isTelephonyAvailable() {
+		return getActivity().getPackageManager().hasSystemFeature("android.hardware.telephony");
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.detail_form, container, false);
