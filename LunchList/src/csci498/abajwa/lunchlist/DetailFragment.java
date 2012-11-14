@@ -140,7 +140,7 @@ public class DetailFragment extends Fragment {
 			String toDial = "tel:" + phone.getText().toString();
 			
 			if (toDial.length() >= 4) {
-				startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(toDial)));
+				startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(toDial)));
 			}
 		}
 		else if (item.getItemId() == R.id.help) {
