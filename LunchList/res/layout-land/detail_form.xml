@@ -67,5 +67,12 @@
 
       </LinearLayout>
     </TableRow>
+    
+        <TableRow>
+        <TextView android:text="@string/phone" />
+        <EditText android:id="@+id/phone"
+            android:layout_span="2" />
+    </TableRow>
+    
   </TableLayout>
 </ScrollView>

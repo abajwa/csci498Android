@@ -36,6 +36,12 @@
         <TextView android:id="@+id/location" android:text="@string/not_set" />
     </TableRow>
     
+    <TableRow>
+        <TextView android:text="@string/phone" />
+        <EditText android:id="@+id/phone"
+            android:inputType="phone" />
+    </TableRow>
+    
     <EditText android:id="@+id/notes"
         android:inputType="textMultiLine"
         android:gravity="top"
