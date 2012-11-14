@@ -26,6 +26,7 @@ public class DetailFragment extends Fragment {
 	private static final String ARG_REST_ID = "apt.tutorial.ARG_REST_ID";
 	
 	EditText address;
+	EditText phone;
 	EditText feed;
 	EditText name;
 	EditText notes;
@@ -62,6 +63,7 @@ public class DetailFragment extends Fragment {
 		
 		name = (EditText)getView().findViewById(R.id.name);
 		address = (EditText)getView().findViewById(R.id.addr);
+		phone = (EditText)getView().findViewById(R.id.phone);
 		types = (RadioGroup)getView().findViewById(R.id.types);
 		notes = (EditText)getView().findViewById(R.id.notes);
 		feed = (EditText)getView().findViewById(R.id.feed);
@@ -210,10 +212,10 @@ public class DetailFragment extends Fragment {
 			}
 			
 			if (restaurantId == null) {
-				getHelper().insert(name.getText().toString(), address.getText().toString(), type, notes.getText().toString(), feed.getText().toString());
+				getHelper().insert(name.getText().toString(), address.getText().toString(), type, notes.getText().toString(), feed.getText().toString(), phone.getText().toString());
 			}
 			else {
-				getHelper().update(restaurantId, name.getText().toString(), address.getText().toString(), type, notes.getText().toString(), feed.getText().toString());
+				getHelper().update(restaurantId, name.getText().toString(), address.getText().toString(), type, notes.getText().toString(), feed.getText().toString(), phone.getText().toString());
 			}
 		}
 	};
