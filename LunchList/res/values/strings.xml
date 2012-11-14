@@ -57,6 +57,8 @@
     <string name="pref_order">Choose a sort order</string>
     <string name="pref_summary">Choose the order the list uses</string>
     <string name="default_time">12:00</string>
+    <string name="ringtone_title">Alarm Ringtone</string>
+    <string name="ringtone_summary">Indicate the ringtone to play when it is lunctime</string>
     
     <!-- OnAlarmReceiver Strings -->
     <string name="use_notification">use_notification</string>
